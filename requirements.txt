@@ -1,5 +1,7 @@
+fastapi
 uvicorn
 requests
 sqlalchemy
 jinja2
 aiofiles
+starlette

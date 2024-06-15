@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Rates</title>
+    <title>Курсы валют</title>
 </head>
 <body>
     <h1>Курсы валют</h1>
     <form action="/currency_rates" method="get">
-        <label for="date">Дата:</label>
-        <input type="date" id="date" name="date">
-        <button type="submit">Get Rates</button>
+        <label for="date_currency_rates">Дата:</label>
+        <input type="date" id="date_currency_rates" name="date" required>
+        <button type="submit">Получить курсы</button>
+    </form>
+
+    <h2>Получить курс валюты</h2>
+    <form action="/currency_rate" method="get">
+        <label for="date_currency_rate">Дата:</label>
+        <input type="date" id="date_currency_rate" name="date" required>
+        <label for="currency_code">Код валюты:</label>
+        <select id="currency_code" name="code" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="RUB">RUB</option>
+            <!-- Добавьте другие коды валют по мере необходимости -->
+        </select>
+
+        <button type="submit">Получить курс</button>
     </form>
 </body>
 </html>
