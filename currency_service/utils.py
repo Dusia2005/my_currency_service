@@ -1,8 +1,7 @@
 import requests
 from datetime import datetime
 from sqlalchemy.orm import Session
-from currency_service.database import CurrencyRate
-
+from .models import CurrencyRate
 
 def fetch_currency_rates(date: str):
     url = f'https://www.nbrb.by/api/exrates/rates?ondate={date}&periodicity=0'
@@ -11,14 +10,12 @@ def fetch_currency_rates(date: str):
         return response.json()
     return None
 
-
 def fetch_currency_rate_by_code(date: str, code: str):
     url = f'https://www.nbrb.by/api/exrates/rates/{code}?ondate={date}'
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
     return None
-
 
 def save_currency_rates(db: Session, rates: list, date: str):
     date_obj = datetime.strptime(date, '%Y-%m-%d').date()
@@ -30,7 +27,6 @@ def save_currency_rates(db: Session, rates: list, date: str):
         )
         db.add(currency_rate)
     db.commit()
-
 
 def get_currency_rate(db: Session, date: str, code: str):
     date_obj = datetime.strptime(date, '%Y-%m-%d').date()
